@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Welcome to The Candy Store</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .scroll-offset {
+      scroll-margin-top: 100px; /* adjust based on navbar height */
+    }
+  </style>
+</head>
+<body>
+  <div id="main">
+    <div class="navbar">
+      <div class="nav-left">
+        <h2 class="logo">The Candy Store</h2>
+      </div>
+      <div class="nav-center">
+        <a href="#top" class="nav-btn">Home</a>
+        <a href="#about" class="nav-btn">About</a>
+        <a href="#offers" class="nav-btn">Offers</a>
+        <a href="#blogs" class="nav-btn">Blogs</a>
+        <a href="#contact" class="nav-btn">Contact</a>
+      </div>
+      <div class="nav-right">
+        <input type="search" class="search-btn" placeholder="Search..." />
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="top" id="top">
+      <div class="overlay">
+        <div class="text">
+          <h1>The Candy Store</h1>
+          <p class="tagline">
+            From Classic Favorites to Exciting New Flavors, The Candy Store is Your Destination for the Most Tempting and Joyful Sweets!
+          </p>
+          <p class="tagline">
+            Unlock a Treasure Trove of Sweet Surprises at The Candy Store – Bringing You the Perfect Blend of Nostalgia and New Adventures!
+          </p>
+          <button onclick="window.location.href='order.html'">Order Now</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- About & Offers -->
+    <div class="bottom">
+      <div class="b1">
+        <div class="overlay scroll-offset" id="about">
+          <h1>About Us</h1>
+          <p>
+            At The Candy Store, we believe that life is sweeter with a little bit of candy! 
+            From handcrafted chocolates to mouthwatering gummies, we bring joy to every bite...
+          </p>
+        </div>
+        <div class="overlay scroll-offset" id="offers">
+          <h1>Special Offers</h1>
+          <p>
+            Get 20% off on your first order! Order now and enjoy our delicious treats and more.
+          </p>
+          <button class="offer-btn">View all our offers</button>
+        </div>
+      </div>
+
+      <!-- Blogs / Testimonials -->
+      <div class="b2 scroll-offset" id="blogs">
+        <div class="b2-overlay">
+          <h1>What Our Customers Say</h1>
+          <div class="testimonial">
+            <p>"The best candy shop ever! The chocolates are divine, and the service is amazing."</p>
+            <span class="author">– Sarah L.</span>
+          </div>
+          <div class="testimonial">
+            <p>"My kids absolutely love The Candy House! Such a wide variety and great taste."</p>
+            <span class="author">– Michael T.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer / Contact -->
+    <div class="b3 scroll-offset" id="contact">
+      <p>Privacy Policies | Terms & Conditions | Contact Us</p>
+      <div class="footer-icons">
+        <i class="ri-instagram-fill"></i>
+        <i class="ri-twitter-fill"></i>
+        <i class="ri-facebook-circle-fill"></i>
+      </div>
+    </div>
+  </div>
+
+
+      <div id="chat-container">
+        <div id="chatbox">
+          <p class="botText"><span>Hi! How can I help you?</span></p>
+        </div>
+        <input id="userInput" type="text" placeholder="Type your message..." />
+        <button onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+  <!-- Chat Toggle Button -->
+<button id="chat-toggle" class="chat-toggle">💬</button>
+
+<!-- Chat Container -->
+<div id="chat-container" class="chat-container hidden">
+  <div id="chatbox">
+    <p class="botText"><span>Hi! How can I help you?</span></p>
+  </div>
+  <input id="userInput" type="text" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+</div>
+<script>
+    const chatToggle = document.getElementById('chat-toggle');
+    const chatContainer = document.getElementById('chat-container');
+  
+    chatToggle.addEventListener('click', () => {
+      // Toggle the hidden class on the chat container
+      chatContainer.classList.toggle('hidden');
+  
+      // Update the toggle button icon/text based on chat state
+      if (chatContainer.classList.contains('hidden')) {
+        chatToggle.textContent = '💬'; // Chat bubble icon when closed
+      } else {
+        chatToggle.textContent = '✖'; // Cross icon when open
+      }
+    });
+  </script>
+  
+  <script>
+    async function sendMessage() {
+      let userText = document.getElementById("userInput").value;
+      if (!userText) return;
+      let chatbox = document.getElementById("chatbox");
+      let userMessage = `<p class="userText"><span>${userText}</span></p>`;
+      chatbox.innerHTML += userMessage;
+      document.getElementById("userInput").value = "";
+  
+      let response = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: userText })
+      });
+  
+      let data = await response.json();
+      let botMessage = `<p class="botText"><span>${data.reply}</span></p>`;
+      chatbox.innerHTML += botMessage;
+    }
+  </script>
+  
+</body>
+</html>

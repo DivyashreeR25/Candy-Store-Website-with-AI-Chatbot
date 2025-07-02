@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Candy</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Order Your Favourite Candy Here!</h1>
+  </header>
+
+  <!-- Candy Gallery Section -->
+  <section class="gallery-section">
+    
+    <div class="gallery">
+
+      <div class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQht4aDQS2DC6rCuGa1YyjKNAM7NQBM8uRwvQ&s" alt="Chocolate Bliss" />
+        <div class="gallery-info">
+          <p class="caption">Chocolate Bliss - ₹50</p>
+          <button onclick="addToCart('Chocolate Bliss', 50)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxN02uSC5IEP0qCzTRY1tcKAERaQ8XzZEZVQ&s" alt="M&M Delight" />
+        <div class="gallery-info">
+          <p class="caption">M&M Delight - ₹80</p>
+          <button onclick="addToCart('M&M Delight', 80)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://wallpapercave.com/wp/wp13277521.jpg" alt="Rainbow Gummies" />
+        <div class="gallery-info">
+          <p class="caption">Rainbow Gummies - ₹70</p>
+          <button onclick="addToCart('Rainbow Gummies', 70)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://i.pinimg.com/736x/fc/93/40/fc9340a9ff5ad5ca0cebab65d4f90333.jpg" alt="Sugar Candies" />
+        <div class="gallery-info">
+          <p class="caption">Sugar Candies - ₹40</p>
+          <button onclick="addToCart('Sugar Candies', 40)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0-sqQi_7YNE7Q-y80lh42yaA_0RBhPpPeKA&s" alt="Marshmallows" />
+        <div class="gallery-info">
+          <p class="caption">Marshmallows - ₹60</p>
+          <button onclick="addToCart('Marshmallows', 60)">Add to Cart</button>
+        </div>
+      </div>
+
+      <div class="gallery-item">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQc4gkFLf41QuZIVtSBNqJIWSrfBzVWhpfHOg&s" alt="Jellies" />
+        <div class="gallery-info">
+          <p class="caption">Jellies - ₹30</p>
+          <button onclick="addToCart('Jellies', 30)">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Cart Section -->
+  <section class="cart-section">
+    <h2>🛒 Your Cart</h2>
+    <ul id="cart-items"></ul>
+    <p>Total: ₹<span id="cart-total">0</span></p>
+    <button class="checkout-btn" onclick="checkout()">Checkout</button>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
